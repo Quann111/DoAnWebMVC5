@@ -7,15 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication1.Models
+namespace WebApplication1.Areas.Admin.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Authors
+    public partial class admins
     {
-        public int AuthorID { get; set; }
-        public string AuthorName { get; set; }
-        public string ContactInfo { get; set; }
+        public int admin_id { get; set; }
+        public string email { get; set; }
+        public string password { get; set; }
+        public string name { get; set; }
     }
 }

@@ -1,0 +1,67 @@
+﻿@model WebApplication1.Areas.Admin.Models.teacher
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/template.cshtml";
+}
+
+<h2>Detail</h2>
+
+<div>
+    <h4>teacher</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.education_level)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.education_level)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name_Teacher)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name_Teacher)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.teacher_id }) |
+    @Html.ActionLink("Back to List", "DanhsachGV")
+</p>

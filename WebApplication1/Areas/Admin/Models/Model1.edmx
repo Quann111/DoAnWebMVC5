@@ -4,44 +4,75 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="webcourseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Authors">
+      <Schema Namespace="CourseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="admins">
           <Key>
-            <PropertyRef Name="AuthorID" />
+            <PropertyRef Name="admin_id" />
           </Key>
-          <Property Name="AuthorID" Type="int" Nullable="false" />
-          <Property Name="AuthorName" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="ContactInfo" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="admin_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
-        <EntityType Name="Categories">
+        <EntityType Name="carts">
           <Key>
-            <PropertyRef Name="CategoryID" />
+            <PropertyRef Name="cart_id" />
           </Key>
-          <Property Name="CategoryID" Type="int" Nullable="false" />
-          <Property Name="CategoryName" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Description" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="cart_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Courses">
+        <EntityType Name="Course">
           <Key>
-            <PropertyRef Name="CourseID" />
+            <PropertyRef Name="product_id" />
           </Key>
-          <Property Name="CourseID" Type="int" Nullable="false" />
-          <Property Name="CourseName" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Description" Type="varchar" MaxLength="500" Nullable="false" />
-          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="AuthorID" Type="int" Nullable="false" />
-          <Property Name="CategoryID" Type="int" Nullable="false" />
-          <Property Name="EnrollmentCount" Type="int" />
+          <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_Course" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="description" Type="text" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="image" Type="varchar" MaxLength="255" />
+          <Property Name="teacher_id" Type="int" />
         </EntityType>
-        <EntityType Name="Payments">
+        <EntityType Name="feedbacks">
           <Key>
-            <PropertyRef Name="PaymentID" />
+            <PropertyRef Name="feedback_id" />
           </Key>
-          <Property Name="PaymentID" Type="int" Nullable="false" />
-          <Property Name="UserID" Type="int" Nullable="false" />
-          <Property Name="CourseID" Type="int" Nullable="false" />
-          <Property Name="PaymentAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="PaymentDate" Type="datetime" Nullable="false" />
+          <Property Name="feedback_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="content" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="order_items">
+          <Key>
+            <PropertyRef Name="order_item_id" />
+          </Key>
+          <Property Name="order_item_id" Type="int" Nullable="false" />
+          <Property Name="order_id" Type="int" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="int" Nullable="false" />
+          <Property Name="total_price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="payment_method" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="name_Student" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="payment_method" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -53,103 +84,256 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="Users">
+        <EntityType Name="teacher">
           <Key>
-            <PropertyRef Name="UserID" />
+            <PropertyRef Name="teacher_id" />
           </Key>
-          <Property Name="UserID" Type="int" Nullable="false" />
-          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="FullName" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="teacher_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="subject" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="education_level" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="name_Teacher" Type="varchar" MaxLength="255" />
         </EntityType>
-        <Association Name="FK_Payment_Course">
-          <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
-          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="20" />
+          <Property Name="address" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK__carts__product_i__35BCFE0A">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="carts" Type="Self.carts" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Courses">
-              <PropertyRef Name="CourseID" />
+            <Principal Role="Course">
+              <PropertyRef Name="product_id" />
             </Principal>
-            <Dependent Role="Payments">
-              <PropertyRef Name="CourseID" />
+            <Dependent Role="carts">
+              <PropertyRef Name="product_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Payment_User">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+        <Association Name="FK__carts__user_id__34C8D9D1">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="carts" Type="Self.carts" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserID" />
+            <Principal Role="users">
+              <PropertyRef Name="user_id" />
             </Principal>
-            <Dependent Role="Payments">
-              <PropertyRef Name="UserID" />
+            <Dependent Role="carts">
+              <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="webcourseModelStoreContainer">
-          <EntitySet Name="Authors" EntityType="Self.Authors" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+        <Association Name="FK__feedbacks__produ__300424B4">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="feedbacks" Type="Self.feedbacks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="feedbacks">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__feedbacks__user___2F10007B">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="feedbacks" Type="Self.feedbacks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="feedbacks">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__order_ite__produ__2C3393D0">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="order_items" Type="Self.order_items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="order_items">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Course_teacher">
+          <End Role="teacher" Type="Self.teacher" Multiplicity="0..1" />
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teacher">
+              <PropertyRef Name="teacher_id" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="teacher_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_items_orders">
+          <End Role="orders" Type="Self.orders" Multiplicity="1" />
+          <End Role="order_items" Type="Self.order_items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="order_id" />
+            </Principal>
+            <Dependent Role="order_items">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_student_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="student" Type="Self.student" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="student">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CourseModelStoreContainer">
+          <EntitySet Name="admins" EntityType="Self.admins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="carts" EntityType="Self.carts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="feedbacks" EntityType="Self.feedbacks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="order_items" EntityType="Self.order_items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="student" EntityType="Self.student" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Payment_Course" Association="Self.FK_Payment_Course">
-            <End Role="Courses" EntitySet="Courses" />
-            <End Role="Payments" EntitySet="Payments" />
+          <EntitySet Name="teacher" EntityType="Self.teacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__carts__product_i__35BCFE0A" Association="Self.FK__carts__product_i__35BCFE0A">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="carts" EntitySet="carts" />
           </AssociationSet>
-          <AssociationSet Name="FK_Payment_User" Association="Self.FK_Payment_User">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Payments" EntitySet="Payments" />
+          <AssociationSet Name="FK__carts__user_id__34C8D9D1" Association="Self.FK__carts__user_id__34C8D9D1">
+            <End Role="users" EntitySet="users" />
+            <End Role="carts" EntitySet="carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__feedbacks__produ__300424B4" Association="Self.FK__feedbacks__produ__300424B4">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="feedbacks" EntitySet="feedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__feedbacks__user___2F10007B" Association="Self.FK__feedbacks__user___2F10007B">
+            <End Role="users" EntitySet="users" />
+            <End Role="feedbacks" EntitySet="feedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__order_ite__produ__2C3393D0" Association="Self.FK__order_ite__produ__2C3393D0">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="order_items" EntitySet="order_items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Course_teacher" Association="Self.FK_Course_teacher">
+            <End Role="teacher" EntitySet="teacher" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_items_orders" Association="Self.FK_order_items_orders">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="order_items" EntitySet="order_items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_student_users" Association="Self.FK_student_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="student" EntitySet="student" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="webcourseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Author">
+      <Schema Namespace="CourseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="admins">
           <Key>
-            <PropertyRef Name="AuthorID" />
+            <PropertyRef Name="admin_id" />
           </Key>
-          <Property Name="AuthorID" Type="Int32" Nullable="false" />
-          <Property Name="AuthorName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ContactInfo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="admin_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <EntityType Name="Category">
+        <EntityType Name="carts">
           <Key>
-            <PropertyRef Name="CategoryID" />
+            <PropertyRef Name="cart_id" />
           </Key>
-          <Property Name="CategoryID" Type="Int32" Nullable="false" />
-          <Property Name="CategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cart_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Course" Relationship="Self.FK__carts__product_i__35BCFE0A" FromRole="carts" ToRole="Course" />
+          <NavigationProperty Name="users" Relationship="Self.FK__carts__user_id__34C8D9D1" FromRole="carts" ToRole="users" />
         </EntityType>
-        <EntityType Name="Cours">
+        <EntityType Name="Course">
           <Key>
-            <PropertyRef Name="CourseID" />
+            <PropertyRef Name="product_id" />
           </Key>
-          <Property Name="CourseID" Type="Int32" Nullable="false" />
-          <Property Name="CourseName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="AuthorID" Type="Int32" Nullable="false" />
-          <Property Name="CategoryID" Type="Int32" Nullable="false" />
-          <Property Name="EnrollmentCount" Type="Int32" />
-          <NavigationProperty Name="Payments" Relationship="Self.FK_Payment_Course" FromRole="Courses" ToRole="Payments" />
+          <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_Course" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="image" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="teacher_id" Type="Int32" />
+          <NavigationProperty Name="carts" Relationship="Self.FK__carts__product_i__35BCFE0A" FromRole="Course" ToRole="carts" />
+          <NavigationProperty Name="feedbacks" Relationship="Self.FK__feedbacks__produ__300424B4" FromRole="Course" ToRole="feedbacks" />
+          <NavigationProperty Name="order_items" Relationship="Self.FK__order_ite__produ__2C3393D0" FromRole="Course" ToRole="order_items" />
+          <NavigationProperty Name="teacher" Relationship="Self.FK_Course_teacher" FromRole="Course" ToRole="teacher" />
         </EntityType>
-        <EntityType Name="Payment">
+        <EntityType Name="feedbacks">
           <Key>
-            <PropertyRef Name="PaymentID" />
+            <PropertyRef Name="feedback_id" />
           </Key>
-          <Property Name="PaymentID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="CourseID" Type="Int32" Nullable="false" />
-          <Property Name="PaymentAmount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Cours" Relationship="Self.FK_Payment_Course" FromRole="Payments" ToRole="Courses" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Payment_User" FromRole="Payments" ToRole="Users" />
+          <Property Name="feedback_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Course" Relationship="Self.FK__feedbacks__produ__300424B4" FromRole="feedbacks" ToRole="Course" />
+          <NavigationProperty Name="users" Relationship="Self.FK__feedbacks__user___2F10007B" FromRole="feedbacks" ToRole="users" />
         </EntityType>
-        <EntityType Name="sysdiagram">
+        <EntityType Name="order_items">
+          <Key>
+            <PropertyRef Name="order_item_id" />
+          </Key>
+          <Property Name="order_item_id" Type="Int32" Nullable="false" />
+          <Property Name="order_id" Type="Int32" Nullable="false" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Course" Relationship="Self.FK__order_ite__produ__2C3393D0" FromRole="order_items" ToRole="Course" />
+          <NavigationProperty Name="orders" Relationship="Self.FK_order_items_orders" FromRole="order_items" ToRole="orders" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="Int32" Nullable="false" />
+          <Property Name="total_price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="payment_method" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="order_items" Relationship="Self.FK_order_items_orders" FromRole="orders" ToRole="order_items" />
+        </EntityType>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name_Student" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="payment_method" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="users" Relationship="Self.FK_student_users" FromRole="student" ToRole="users" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
@@ -159,55 +343,171 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="User">
+        <EntityType Name="teacher">
           <Key>
-            <PropertyRef Name="UserID" />
+            <PropertyRef Name="teacher_id" />
           </Key>
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Payments" Relationship="Self.FK_Payment_User" FromRole="Users" ToRole="Payments" />
+          <Property Name="teacher_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="subject" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="education_level" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name_Teacher" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Course" Relationship="Self.FK_Course_teacher" FromRole="teacher" ToRole="Course" />
         </EntityType>
-        <Association Name="FK_Payment_Course">
-          <End Role="Courses" Type="Self.Cours" Multiplicity="1" />
-          <End Role="Payments" Type="Self.Payment" Multiplicity="*" />
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="carts" Relationship="Self.FK__carts__user_id__34C8D9D1" FromRole="users" ToRole="carts" />
+          <NavigationProperty Name="feedbacks" Relationship="Self.FK__feedbacks__user___2F10007B" FromRole="users" ToRole="feedbacks" />
+          <NavigationProperty Name="student" Relationship="Self.FK_student_users" FromRole="users" ToRole="student" />
+        </EntityType>
+        <Association Name="FK__carts__product_i__35BCFE0A">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="carts" Type="Self.carts" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Courses">
-              <PropertyRef Name="CourseID" />
+            <Principal Role="Course">
+              <PropertyRef Name="product_id" />
             </Principal>
-            <Dependent Role="Payments">
-              <PropertyRef Name="CourseID" />
+            <Dependent Role="carts">
+              <PropertyRef Name="product_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Payment_User">
-          <End Role="Users" Type="Self.User" Multiplicity="1" />
-          <End Role="Payments" Type="Self.Payment" Multiplicity="*" />
+        <Association Name="FK__carts__user_id__34C8D9D1">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="carts" Type="Self.carts" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserID" />
+            <Principal Role="users">
+              <PropertyRef Name="user_id" />
             </Principal>
-            <Dependent Role="Payments">
-              <PropertyRef Name="UserID" />
+            <Dependent Role="carts">
+              <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="webcourseEntities2" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Authors" EntityType="Self.Author" />
-          <EntitySet Name="Categories" EntityType="Self.Category" />
-          <EntitySet Name="Courses" EntityType="Self.Cours" />
-          <EntitySet Name="Payments" EntityType="Self.Payment" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK_Payment_Course" Association="Self.FK_Payment_Course">
-            <End Role="Courses" EntitySet="Courses" />
-            <End Role="Payments" EntitySet="Payments" />
+        <Association Name="FK__feedbacks__produ__300424B4">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="feedbacks" Type="Self.feedbacks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="feedbacks">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__order_ite__produ__2C3393D0">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="order_items" Type="Self.order_items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="order_items">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Course_teacher">
+          <End Role="teacher" Type="Self.teacher" Multiplicity="0..1" />
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teacher">
+              <PropertyRef Name="teacher_id" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="teacher_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__feedbacks__user___2F10007B">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="feedbacks" Type="Self.feedbacks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="feedbacks">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_items_orders">
+          <End Role="orders" Type="Self.orders" Multiplicity="1" />
+          <End Role="order_items" Type="Self.order_items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="order_id" />
+            </Principal>
+            <Dependent Role="order_items">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_student_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="student" Type="Self.student" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="student">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CourseEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="admins" EntityType="Self.admins" />
+          <EntitySet Name="carts" EntityType="Self.carts" />
+          <EntitySet Name="Course" EntityType="Self.Course" />
+          <EntitySet Name="feedbacks" EntityType="Self.feedbacks" />
+          <EntitySet Name="order_items" EntityType="Self.order_items" />
+          <EntitySet Name="orders" EntityType="Self.orders" />
+          <EntitySet Name="student" EntityType="Self.student" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="teacher" EntityType="Self.teacher" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <AssociationSet Name="FK__carts__product_i__35BCFE0A" Association="Self.FK__carts__product_i__35BCFE0A">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="carts" EntitySet="carts" />
           </AssociationSet>
-          <AssociationSet Name="FK_Payment_User" Association="Self.FK_Payment_User">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Payments" EntitySet="Payments" />
+          <AssociationSet Name="FK__carts__user_id__34C8D9D1" Association="Self.FK__carts__user_id__34C8D9D1">
+            <End Role="users" EntitySet="users" />
+            <End Role="carts" EntitySet="carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__feedbacks__produ__300424B4" Association="Self.FK__feedbacks__produ__300424B4">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="feedbacks" EntitySet="feedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__order_ite__produ__2C3393D0" Association="Self.FK__order_ite__produ__2C3393D0">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="order_items" EntitySet="order_items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Course_teacher" Association="Self.FK_Course_teacher">
+            <End Role="teacher" EntitySet="teacher" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK__feedbacks__user___2F10007B" Association="Self.FK__feedbacks__user___2F10007B">
+            <End Role="users" EntitySet="users" />
+            <End Role="feedbacks" EntitySet="feedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_items_orders" Association="Self.FK_order_items_orders">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="order_items" EntitySet="order_items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_student_users" Association="Self.FK_student_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="student" EntitySet="student" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -215,51 +515,85 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="webcourseModelStoreContainer" CdmEntityContainer="webcourseEntities2">
-          <EntitySetMapping Name="Authors">
-            <EntityTypeMapping TypeName="webcourseModel.Author">
-              <MappingFragment StoreEntitySet="Authors">
-                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
-                <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
-                <ScalarProperty Name="ContactInfo" ColumnName="ContactInfo" />
+        <EntityContainerMapping StorageEntityContainer="CourseModelStoreContainer" CdmEntityContainer="CourseEntities1">
+          <EntitySetMapping Name="admins">
+            <EntityTypeMapping TypeName="CourseModel.admins">
+              <MappingFragment StoreEntitySet="admins">
+                <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="webcourseModel.Category">
-              <MappingFragment StoreEntitySet="Categories">
-                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
+          <EntitySetMapping Name="carts">
+            <EntityTypeMapping TypeName="CourseModel.carts">
+              <MappingFragment StoreEntitySet="carts">
+                <ScalarProperty Name="cart_id" ColumnName="cart_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Courses">
-            <EntityTypeMapping TypeName="webcourseModel.Cours">
-              <MappingFragment StoreEntitySet="Courses">
-                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
-                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
-                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-                <ScalarProperty Name="EnrollmentCount" ColumnName="EnrollmentCount" />
+          <EntitySetMapping Name="Course">
+            <EntityTypeMapping TypeName="CourseModel.Course">
+              <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="name_Course" ColumnName="name_Course" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="teacher_id" ColumnName="teacher_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Payments">
-            <EntityTypeMapping TypeName="webcourseModel.Payment">
-              <MappingFragment StoreEntitySet="Payments">
-                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
-                <ScalarProperty Name="PaymentAmount" ColumnName="PaymentAmount" />
-                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+          <EntitySetMapping Name="feedbacks">
+            <EntityTypeMapping TypeName="CourseModel.feedbacks">
+              <MappingFragment StoreEntitySet="feedbacks">
+                <ScalarProperty Name="feedback_id" ColumnName="feedback_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="content" ColumnName="content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="order_items">
+            <EntityTypeMapping TypeName="CourseModel.order_items">
+              <MappingFragment StoreEntitySet="order_items">
+                <ScalarProperty Name="order_item_id" ColumnName="order_item_id" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orders">
+            <EntityTypeMapping TypeName="CourseModel.orders">
+              <MappingFragment StoreEntitySet="orders">
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="total_price" ColumnName="total_price" />
+                <ScalarProperty Name="payment_method" ColumnName="payment_method" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="student">
+            <EntityTypeMapping TypeName="CourseModel.student">
+              <MappingFragment StoreEntitySet="student">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="name_Student" ColumnName="name_Student" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="payment_method" ColumnName="payment_method" />
+                <ScalarProperty Name="status" ColumnName="status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="webcourseModel.sysdiagram">
+            <EntityTypeMapping TypeName="CourseModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -269,14 +603,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="webcourseModel.User">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
+          <EntitySetMapping Name="teacher">
+            <EntityTypeMapping TypeName="CourseModel.teacher">
+              <MappingFragment StoreEntitySet="teacher">
+                <ScalarProperty Name="teacher_id" ColumnName="teacher_id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="subject" ColumnName="subject" />
+                <ScalarProperty Name="education_level" ColumnName="education_level" />
+                <ScalarProperty Name="name_Teacher" ColumnName="name_Teacher" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="CourseModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -294,9 +642,9 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

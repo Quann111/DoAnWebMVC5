@@ -1,0 +1,64 @@
+﻿@model IEnumerable<WebApplication1.Areas.Admin.Models.teacher>
+
+@{
+    ViewBag.Title = "DanhsachGV";
+    Layout = "~/Areas/Admin/Views/Shared/template.cshtml";
+}
+
+<h2>DanhsachGV</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Them_GV")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.subject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.education_level)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name_Teacher)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.subject)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.education_level)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name_Teacher)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Update_KhoaHoc", new { id=item.teacher_id }) |
+            @Html.ActionLink("Details", "Detail", new { id=item.teacher_id }) |
+            @Html.ActionLink("Delete", "XoaTrangSuc", new { id=item.teacher_id })
+        </td>
+    </tr>
+}
+
+</table>

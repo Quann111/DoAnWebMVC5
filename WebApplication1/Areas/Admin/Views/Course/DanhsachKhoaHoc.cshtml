@@ -1,0 +1,55 @@
+﻿@model IEnumerable<WebApplication1.Areas.Admin.Models.Course>
+@{
+    ViewBag.Title = "Course";
+    Layout = "~/Areas/Admin/Views/Shared/template.cshtml";
+}
+<p>
+    @Html.ActionLink("Create New", "Them_KhoaHoc")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name_Course)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.teacher.email)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name_Course)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.teacher.email)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Update_KhoaHoc", new { id = item.product_id }) |
+                @Html.ActionLink("Details", "Detail", new { id = item.product_id }) |
+                @Html.ActionLink("Delete", "XoaTrangSuc", new { id = item.product_id })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -2,62 +2,301 @@
 @{
     Layout = null;
 }
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-<body>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #17a2b8;
-            height: 100vh;
-        }
 
-        #login .container #login-row #login-column #login-box {
-            margin-top: 120px;
-            max-width: 600px;
-            height: 320px;
-            border: 1px solid #9C9C9C;
-            background-color: #EAEAEA;
-        }
+<!DOCTYPE html>
 
-            #login .container #login-row #login-column #login-box #login-form {
-                padding: 20px;
-            }
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <!--Core CSS -->
+    <link href="~/Assets/Admin/bs3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Assets/Admin/css/bootstrap-reset.css" rel="stylesheet">
+    <link href="~/Assets/Admin/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="~/Assets/Admin/css/style.css" rel="stylesheet">
+    <link href="~/Assets/Admin/css/style-responsive.css" rel="stylesheet" />
+    <title>Trang đăng nhập</title>
+</head>
+<body class="login-body">
+    <div class="container">
 
-                #login .container #login-row #login-column #login-box #login-form #register-link {
-                    margin-top: -85px;
+        <div class="form-signin">
+
+            <h2 class="form-signin-heading">Đăng nhập</h2>
+            <div class="login-wrap">
+
+               
+                    <div class="user-login-info">
+                      
+                    </div>
+                    <label class="checkbox">
+                        <input type="checkbox" value="remember-me"> Remember me
+                        <span class="pull-right">
+                            <a data-toggle="modal" href="#myModal"> Forgot Password?</a>
+                        </span>
+                    </label>
+                    <button class="btn btn-danger" type="submit" style="width:100%; font-weight: bold; font-size: 12pt;"><i class="fa fa-user"></i> Đăng nhập</button>
+
+                    <!--Login Microsoft-->
+                    <a href="@Url.Action("LoginOutlook", "Login")" style="text-decoration: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="300px" height="50px" viewBox="0 0 3278 522" class="SignInButton">
+                        <style type="text/css">
+                            .fil0:hover {
+                                fill: #4B4B4B;
+                            }
+
+                            .fnt0 {
+                                font-size: 200px;
+                                font-family: 'Segoe UI Semibold', 'Segoe UI';
+                                text-decoration: none;
+                            }
+</style>
+                        <rect class="fil0" x="2" y="2" width="3174" height="517" fill="black" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <rect x="150" y="129" width="122" height="122" fill="#F35325" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <rect x="284" y="129" width="122" height="122" fill="#81BC06" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <rect x="150" y="263" width="122" height="122" fill="#05A6F0" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <rect x="284" y="263" width="122" height="122" fill="#FFBA08" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <text x="470" y="357" fill="white" class="fnt0">Đăng nhập với Microsoft</text>
+        </svg>
+                    </a>
+
+                    <!--Login Facebook-->
+                    <a href="~/DOTNETGROUP/Login/LoginFacebook" class="btn btn-social-icon btn-sm btn-facebook" style="">
+                        <i class="fa fa-facebook fa-fw" aria-hidden="true"></i> Đăng nhập với Facebook
+                    </a>
+                    <style type="text/css">
+                        a.btn-facebook {
+                            background-color: #0b449a;
+                            color: white;
+                            font-weight: bold;
+                            padding: 10px;
+                            width: 100%;
+                            font-size: 12pt;
+                        }
+
+                            a.btn-facebook:hover {
+                                color: white;
+                                background-color: #022352;
+                                text-decoration: none;
+                            }
+
+                        a.btn-google {
+                            margin-top: 2px;
+                            background-color: #ff0000;
+                            color: white;
+                            font-weight: bold;
+                            padding: 10px;
+                            width: 100%;
+                            font-size: 12pt;
+                        }
+
+                            a.btn-google:hover {
+                                color: white;
+                                background-color: maroon;
+                                text-decoration: none;
+                            }
+                    </style>
+                    <a href="~/DOTNETGROUP/Login/LoginGoogle" class="btn btn-social-icon btn-sm btn-google" style="">
+                        <i class="fa fa-google-plus fa-fw" aria-hidden="true"></i> Đăng nhập với Google
+                    </a>
                 }
-    </style>
-    <div id="login">
-        <h3 class="text-center text-white pt-5">Login form</h3>
-        <div class="container">
-            <div id="login-row" class="row justify-content-center align-items-center">
-                <div id="login-column" class="col-md-6">
-                    <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form" action="" method="post">
-                            <h3 class="text-center text-info">Login</h3>
-                            <div class="form-group">
-                                <label for="username" class="text-info">Username:</label><br>
-                                <input type="text" name="username" id="username" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="password" class="text-info">Password:</label><br>
-                                <input type="text" name="password" id="password" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
-                                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
-                            </div>
-                            <div id="register-link" class="text-right">
-                                <a href="#" class="text-info">Register here</a>
-                            </div>
-                        </form>
+                <div class="registration">
+                    Don't have an account yet?
+                    <a class="" href="registration.html">
+                        Create an account
+                    </a>
+                </div>
+            </div>
+
+
+            <!-- Modal -->
+            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Forgot Password ?</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Enter your e-mail address below to reset your password.</p>
+                            <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+                            <button class="btn btn-success" type="button">Submit</button>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- modal -->
+
+
         </div>
+
+
+
+
+
     </div>
+
+    <!-- Placed js at the end of the document so the pages load faster -->
+    <!--Core js-->
+    <script src="~/Assets/Admin/js/jquery.js"></script>
+    <script src="~/Assets/Admin/bs3/js/bootstrap.min.js"></script>
 </body>
+</html>

@@ -7,28 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication1.Models
+namespace WebApplication1.Areas.Admin.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Courses
+    public partial class orders
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Courses()
+        public orders()
         {
-            this.Payments = new HashSet<Payments>();
+            this.order_items = new HashSet<order_items>();
         }
     
-        public int CourseID { get; set; }
-        public string CourseName { get; set; }
-        public string Description { get; set; }
-        public decimal Price { get; set; }
-        public int AuthorID { get; set; }
-        public int CategoryID { get; set; }
-        public Nullable<int> EnrollmentCount { get; set; }
+        public int order_id { get; set; }
+        public decimal total_price { get; set; }
+        public string payment_method { get; set; }
+        public string status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Payments> Payments { get; set; }
+        public virtual ICollection<order_items> order_items { get; set; }
     }
 }

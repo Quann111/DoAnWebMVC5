@@ -7,15 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication1.Models
+namespace WebApplication1.Areas.Admin.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Categories
+    public partial class student
     {
-        public int CategoryID { get; set; }
-        public string CategoryName { get; set; }
-        public string Description { get; set; }
+        public int user_id { get; set; }
+        public string email { get; set; }
+        public string name_Student { get; set; }
+        public string phone { get; set; }
+        public string address { get; set; }
+        public string payment_method { get; set; }
+        public string status { get; set; }
+    
+        public virtual users users { get; set; }
     }
 }

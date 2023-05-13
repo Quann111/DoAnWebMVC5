@@ -7,20 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication1.Models
+namespace WebApplication1.Areas.Admin.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Payments
+    public partial class carts
     {
-        public int PaymentID { get; set; }
-        public int UserID { get; set; }
-        public int CourseID { get; set; }
-        public decimal PaymentAmount { get; set; }
-        public System.DateTime PaymentDate { get; set; }
+        public int cart_id { get; set; }
+        public int user_id { get; set; }
+        public int product_id { get; set; }
+        public int quantity { get; set; }
     
-        public virtual Courses Courses { get; set; }
-        public virtual Users Users { get; set; }
+        public virtual Course Course { get; set; }
+        public virtual users users { get; set; }
     }
 }

@@ -4,15 +4,25 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7c933ca7e0c144f9856d2db915ca06df" Name="Diagram1">
-        <EntityTypeShape EntityType="webcourseModel.Author" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="webcourseModel.Category" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="webcourseModel.Cours" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="webcourseModel.Payment" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="webcourseModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="webcourseModel.User" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
-        <AssociationConnector Association="webcourseModel.FK_Payment_Course" ManuallyRouted="false" />
-        <AssociationConnector Association="webcourseModel.FK_Payment_User" ManuallyRouted="false" />
+      <Diagram DiagramId="e8989904487d4d28aadeed0ec2684be1" Name="Diagram1">
+        <EntityTypeShape EntityType="CourseModel.admins" Width="1.5" PointX="7.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseModel.carts" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseModel.Course" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseModel.feedbacks" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseModel.order_items" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseModel.orders" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseModel.student" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseModel.teacher" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseModel.users" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="CourseModel.FK__carts__product_i__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseModel.FK__carts__user_id__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseModel.FK__feedbacks__produ__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseModel.FK__order_ite__produ__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseModel.FK_Course_teacher" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseModel.FK__feedbacks__user___2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseModel.FK_order_items_orders" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseModel.FK_student_users" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

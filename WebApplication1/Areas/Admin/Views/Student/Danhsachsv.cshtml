@@ -1,0 +1,70 @@
+﻿@model IEnumerable<WebApplication1.Areas.Admin.Models.student>
+
+@{
+    ViewBag.Title = "Danhsachsv";
+    Layout = "~/Areas/Admin/Views/Shared/template.cshtml";
+}
+
+<h2>Danhsachsv</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Them_sv")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name_Student)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.payment_method)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.users.email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name_Student)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.payment_method)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.users.email)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Update_sv", new { id=item.user_id }) |
+            @Html.ActionLink("Details", "Detail", new { id=item.user_id }) |
+            @Html.ActionLink("Delete", "XoaTrangSuc", new { id=item.user_id })
+        </td>
+    </tr>
+}
+
+</table>
