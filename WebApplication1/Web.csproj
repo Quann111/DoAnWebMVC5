@@ -395,7 +395,7 @@
     <Content Include="Views\Shared\_LayoutPageUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\Class1.cs" />
+    <Compile Include="App_Start\StartUp.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />

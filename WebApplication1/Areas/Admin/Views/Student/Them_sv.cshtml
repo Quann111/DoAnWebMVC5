@@ -5,14 +5,14 @@
     Layout = "~/Areas/Admin/Views/Shared/template.cshtml";
 }
 
-<h2>Them_sv</h2>
+<h2>Add student</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>student</h4>
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
