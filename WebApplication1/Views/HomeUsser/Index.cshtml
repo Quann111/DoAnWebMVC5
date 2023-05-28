@@ -3,7 +3,21 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutPageUser.cshtml";
 }
-
+<style>
+    .my-link-class {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+</style>
 <!-- Navbar Start -->
 <div class="container-fluid">
     <div class="row border-top px-xl-5">
@@ -38,11 +52,11 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                    <div class="navbar-nav py-0">                  
+                    <div class="navbar-nav py-0">
                         <a href="/HomeUsser/Index" class="nav-item nav-link active">Home</a>
                         <a href="/AboutUs/Index" class="nav-item nav-link">About</a>
-                        <a href="/Course/Index" class="nav-item nav-link">Courses</a>
-                        <a href="/Teacher/Index" class="nav-item nav-link">Teachers</a>
+                        <a href="/courseUser/Index" class="nav-item nav-link">Courses</a>
+                        <a href="/teacherUser/Index" class="nav-item nav-link">Teachers</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog</a>
                             <div class="dropdown-menu rounded-0 m-0">
@@ -53,13 +67,14 @@
                         <a href="/Contact/Index" class="nav-item nav-link">Contact</a>
                     </div>
                     <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="">Join Now</a>
+                    @Html.ActionLink("Logout", "Logout", "HomeUsser", new { @class = "my-link-class" })
+
                 </div>
             </nav>
         </div>
     </div>
 </div>
 <!-- Navbar End -->
-
 <!-- Carousel Start -->
 <div class="container-fluid p-0 pb-5 mb-5">
     <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
@@ -103,7 +118,6 @@
     </div>
 </div>
 <!-- Carousel End -->
-
 <!-- About Start -->
 <div class="container-fluid py-5">
     <div class="container py-5">
@@ -123,7 +137,6 @@
     </div>
 </div>
 <!-- About End -->
-
 <!-- Category Start -->
 <div class="container-fluid py-5">
     <div class="container pt-5 pb-3">
@@ -208,7 +221,6 @@
     </div>
 </div>
 <!-- Category End -->
-
 <!-- Courses Start -->
 <div class="container-fluid py-5">
     <div class="container py-5">
@@ -329,7 +341,6 @@
     </div>
 </div>
 <!-- Courses End -->
-
 <!-- Registration Start -->
 <div class="container-fluid bg-registration py-5" style="margin: 90px 0;">
     <div class="container py-5">
@@ -382,7 +393,6 @@
     </div>
 </div>
 <!-- Registration End -->
-
 <!-- Team Start -->
 <div class="container-fluid py-5">
     <div class="container pt-5 pb-3">
@@ -459,7 +469,6 @@
     </div>
 </div>
 <!-- Team End -->
-
 <!-- Testimonial Start -->
 <div class="container-fluid py-5">
     <div class="container py-5">
@@ -497,7 +506,6 @@
     </div>
 </div>
 <!-- Testimonial End -->
-
 <!-- Blog Start -->
 <div class="container-fluid py-5">
     <div class="container pt-5 pb-3">

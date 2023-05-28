@@ -26,11 +26,14 @@ namespace WebApplication1.Areas.Admin.Models
         }
     
         public virtual DbSet<admins> admins { get; set; }
+        public virtual DbSet<BaiViet> BaiViet { get; set; }
         public virtual DbSet<carts> carts { get; set; }
         public virtual DbSet<Course> Course { get; set; }
         public virtual DbSet<feedbacks> feedbacks { get; set; }
+        public virtual DbSet<LoaiBaiViet> LoaiBaiViet { get; set; }
         public virtual DbSet<order_items> order_items { get; set; }
         public virtual DbSet<orders> orders { get; set; }
+        public virtual DbSet<posts> posts { get; set; }
         public virtual DbSet<student> student { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<teacher> teacher { get; set; }

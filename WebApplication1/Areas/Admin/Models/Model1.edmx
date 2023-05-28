@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CourseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CourseeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="admins">
           <Key>
             <PropertyRef Name="admin_id" />
@@ -14,12 +14,27 @@
           <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
+        <EntityType Name="BaiViet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenBaiViet" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Mota" Type="nvarchar(max)" />
+          <Property Name="NgayViet" Type="date" />
+          <Property Name="NguoiViet" Type="nvarchar(max)" />
+          <Property Name="NoiDUNG" Type="nvarchar(max)" />
+          <Property Name="HinhAnh" Type="nvarchar(max)" />
+          <Property Name="HienThi" Type="bit" />
+          <Property Name="ThuTu" Type="int" />
+          <Property Name="idBaiViet" Type="int" />
+        </EntityType>
         <EntityType Name="carts">
           <Key>
             <PropertyRef Name="cart_id" />
           </Key>
-          <Property Name="cart_id" Type="int" Nullable="false" />
-          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cart_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
           <Property Name="product_id" Type="int" Nullable="false" />
           <Property Name="quantity" Type="int" Nullable="false" />
         </EntityType>
@@ -29,9 +44,9 @@
           </Key>
           <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name_Course" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="description" Type="text" />
+          <Property Name="description" Type="nvarchar(max)" />
           <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="image" Type="varchar" MaxLength="255" />
+          <Property Name="image" Type="varchar(max)" />
           <Property Name="teacher_id" Type="int" />
         </EntityType>
         <EntityType Name="feedbacks">
@@ -42,6 +57,13 @@
           <Property Name="user_id" Type="int" Nullable="false" />
           <Property Name="product_id" Type="int" Nullable="false" />
           <Property Name="content" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LoaiBaiViet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="TenLoai" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="order_items">
           <Key>
@@ -61,6 +83,17 @@
           <Property Name="total_price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="payment_method" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="status" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="posts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="author" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="publish_date" Type="date" />
+          <Property Name="category" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="student">
           <Key>
@@ -167,6 +200,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_BaiViet_LoaiBaiViet">
+          <End Role="LoaiBaiViet" Type="Self.LoaiBaiViet" Multiplicity="0..1" />
+          <End Role="BaiViet" Type="Self.BaiViet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiBaiViet">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BaiViet">
+              <PropertyRef Name="idBaiViet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Course_teacher">
           <End Role="teacher" Type="Self.teacher" Multiplicity="0..1" />
           <End Role="Course" Type="Self.Course" Multiplicity="*" />
@@ -203,13 +248,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CourseModelStoreContainer">
+        <EntityContainer Name="CourseeModelStoreContainer">
           <EntitySet Name="admins" EntityType="Self.admins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BaiViet" EntityType="Self.BaiViet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="carts" EntityType="Self.carts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="feedbacks" EntityType="Self.feedbacks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoaiBaiViet" EntityType="Self.LoaiBaiViet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="order_items" EntityType="Self.order_items" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="posts" EntityType="Self.posts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="student" EntityType="Self.student" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="teacher" EntityType="Self.teacher" Schema="dbo" store:Type="Tables" />
@@ -234,6 +282,10 @@
             <End Role="Course" EntitySet="Course" />
             <End Role="order_items" EntitySet="order_items" />
           </AssociationSet>
+          <AssociationSet Name="FK_BaiViet_LoaiBaiViet" Association="Self.FK_BaiViet_LoaiBaiViet">
+            <End Role="LoaiBaiViet" EntitySet="LoaiBaiViet" />
+            <End Role="BaiViet" EntitySet="BaiViet" />
+          </AssociationSet>
           <AssociationSet Name="FK_Course_teacher" Association="Self.FK_Course_teacher">
             <End Role="teacher" EntitySet="teacher" />
             <End Role="Course" EntitySet="Course" />
@@ -251,7 +303,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="CourseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="CourseeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="admins">
           <Key>
             <PropertyRef Name="admin_id" />
@@ -261,12 +313,28 @@
           <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
+        <EntityType Name="BaiViet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenBaiViet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mota" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NgayViet" Type="DateTime" Precision="0" />
+          <Property Name="NguoiViet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NoiDUNG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HinhAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HienThi" Type="Boolean" />
+          <Property Name="ThuTu" Type="Int32" />
+          <Property Name="idBaiViet" Type="Int32" />
+          <NavigationProperty Name="LoaiBaiViet" Relationship="Self.FK_BaiViet_LoaiBaiViet" FromRole="BaiViet" ToRole="LoaiBaiViet" />
+        </EntityType>
         <EntityType Name="carts">
           <Key>
             <PropertyRef Name="cart_id" />
           </Key>
-          <Property Name="cart_id" Type="Int32" Nullable="false" />
-          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cart_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
           <Property Name="product_id" Type="Int32" Nullable="false" />
           <Property Name="quantity" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Course" Relationship="Self.FK__carts__product_i__35BCFE0A" FromRole="carts" ToRole="Course" />
@@ -278,9 +346,9 @@
           </Key>
           <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name_Course" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="image" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="teacher_id" Type="Int32" />
           <NavigationProperty Name="carts" Relationship="Self.FK__carts__product_i__35BCFE0A" FromRole="Course" ToRole="carts" />
           <NavigationProperty Name="feedbacks" Relationship="Self.FK__feedbacks__produ__300424B4" FromRole="Course" ToRole="feedbacks" />
@@ -297,6 +365,14 @@
           <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Course" Relationship="Self.FK__feedbacks__produ__300424B4" FromRole="feedbacks" ToRole="Course" />
           <NavigationProperty Name="users" Relationship="Self.FK__feedbacks__user___2F10007B" FromRole="feedbacks" ToRole="users" />
+        </EntityType>
+        <EntityType Name="LoaiBaiViet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="TenLoai" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BaiViet" Relationship="Self.FK_BaiViet_LoaiBaiViet" FromRole="LoaiBaiViet" ToRole="BaiViet" />
         </EntityType>
         <EntityType Name="order_items">
           <Key>
@@ -319,6 +395,17 @@
           <Property Name="payment_method" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="status" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="order_items" Relationship="Self.FK_order_items_orders" FromRole="orders" ToRole="order_items" />
+        </EntityType>
+        <EntityType Name="posts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="author" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="publish_date" Type="DateTime" Precision="0" />
+          <Property Name="category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="student">
           <Key>
@@ -370,6 +457,18 @@
           <NavigationProperty Name="feedbacks" Relationship="Self.FK__feedbacks__user___2F10007B" FromRole="users" ToRole="feedbacks" />
           <NavigationProperty Name="student" Relationship="Self.FK_student_users" FromRole="users" ToRole="student" />
         </EntityType>
+        <Association Name="FK_BaiViet_LoaiBaiViet">
+          <End Role="LoaiBaiViet" Type="Self.LoaiBaiViet" Multiplicity="0..1" />
+          <End Role="BaiViet" Type="Self.BaiViet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiBaiViet">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BaiViet">
+              <PropertyRef Name="idBaiViet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__carts__product_i__35BCFE0A">
           <End Role="Course" Type="Self.Course" Multiplicity="1" />
           <End Role="carts" Type="Self.carts" Multiplicity="*" />
@@ -468,15 +567,22 @@
         </Association>
         <EntityContainer Name="CourseEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="admins" EntityType="Self.admins" />
+          <EntitySet Name="BaiViet" EntityType="Self.BaiViet" />
           <EntitySet Name="carts" EntityType="Self.carts" />
           <EntitySet Name="Course" EntityType="Self.Course" />
           <EntitySet Name="feedbacks" EntityType="Self.feedbacks" />
+          <EntitySet Name="LoaiBaiViet" EntityType="Self.LoaiBaiViet" />
           <EntitySet Name="order_items" EntityType="Self.order_items" />
           <EntitySet Name="orders" EntityType="Self.orders" />
+          <EntitySet Name="posts" EntityType="Self.posts" />
           <EntitySet Name="student" EntityType="Self.student" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="teacher" EntityType="Self.teacher" />
           <EntitySet Name="users" EntityType="Self.users" />
+          <AssociationSet Name="FK_BaiViet_LoaiBaiViet" Association="Self.FK_BaiViet_LoaiBaiViet">
+            <End Role="LoaiBaiViet" EntitySet="LoaiBaiViet" />
+            <End Role="BaiViet" EntitySet="BaiViet" />
+          </AssociationSet>
           <AssociationSet Name="FK__carts__product_i__35BCFE0A" Association="Self.FK__carts__product_i__35BCFE0A">
             <End Role="Course" EntitySet="Course" />
             <End Role="carts" EntitySet="carts" />
@@ -515,9 +621,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CourseModelStoreContainer" CdmEntityContainer="CourseEntities1">
+        <EntityContainerMapping StorageEntityContainer="CourseeModelStoreContainer" CdmEntityContainer="CourseEntities1">
           <EntitySetMapping Name="admins">
-            <EntityTypeMapping TypeName="CourseModel.admins">
+            <EntityTypeMapping TypeName="CourseeModel.admins">
               <MappingFragment StoreEntitySet="admins">
                 <ScalarProperty Name="admin_id" ColumnName="admin_id" />
                 <ScalarProperty Name="email" ColumnName="email" />
@@ -526,8 +632,24 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="BaiViet">
+            <EntityTypeMapping TypeName="CourseeModel.BaiViet">
+              <MappingFragment StoreEntitySet="BaiViet">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TenBaiViet" ColumnName="TenBaiViet" />
+                <ScalarProperty Name="Mota" ColumnName="Mota" />
+                <ScalarProperty Name="NgayViet" ColumnName="NgayViet" />
+                <ScalarProperty Name="NguoiViet" ColumnName="NguoiViet" />
+                <ScalarProperty Name="NoiDUNG" ColumnName="NoiDUNG" />
+                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+                <ScalarProperty Name="HienThi" ColumnName="HienThi" />
+                <ScalarProperty Name="ThuTu" ColumnName="ThuTu" />
+                <ScalarProperty Name="idBaiViet" ColumnName="idBaiViet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="carts">
-            <EntityTypeMapping TypeName="CourseModel.carts">
+            <EntityTypeMapping TypeName="CourseeModel.carts">
               <MappingFragment StoreEntitySet="carts">
                 <ScalarProperty Name="cart_id" ColumnName="cart_id" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
@@ -537,7 +659,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Course">
-            <EntityTypeMapping TypeName="CourseModel.Course">
+            <EntityTypeMapping TypeName="CourseeModel.Course">
               <MappingFragment StoreEntitySet="Course">
                 <ScalarProperty Name="product_id" ColumnName="product_id" />
                 <ScalarProperty Name="name_Course" ColumnName="name_Course" />
@@ -549,7 +671,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="feedbacks">
-            <EntityTypeMapping TypeName="CourseModel.feedbacks">
+            <EntityTypeMapping TypeName="CourseeModel.feedbacks">
               <MappingFragment StoreEntitySet="feedbacks">
                 <ScalarProperty Name="feedback_id" ColumnName="feedback_id" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
@@ -558,8 +680,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="LoaiBaiViet">
+            <EntityTypeMapping TypeName="CourseeModel.LoaiBaiViet">
+              <MappingFragment StoreEntitySet="LoaiBaiViet">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TenLoai" ColumnName="TenLoai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="order_items">
-            <EntityTypeMapping TypeName="CourseModel.order_items">
+            <EntityTypeMapping TypeName="CourseeModel.order_items">
               <MappingFragment StoreEntitySet="order_items">
                 <ScalarProperty Name="order_item_id" ColumnName="order_item_id" />
                 <ScalarProperty Name="order_id" ColumnName="order_id" />
@@ -570,7 +700,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="orders">
-            <EntityTypeMapping TypeName="CourseModel.orders">
+            <EntityTypeMapping TypeName="CourseeModel.orders">
               <MappingFragment StoreEntitySet="orders">
                 <ScalarProperty Name="order_id" ColumnName="order_id" />
                 <ScalarProperty Name="total_price" ColumnName="total_price" />
@@ -579,8 +709,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="posts">
+            <EntityTypeMapping TypeName="CourseeModel.posts">
+              <MappingFragment StoreEntitySet="posts">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="author" ColumnName="author" />
+                <ScalarProperty Name="publish_date" ColumnName="publish_date" />
+                <ScalarProperty Name="category" ColumnName="category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="student">
-            <EntityTypeMapping TypeName="CourseModel.student">
+            <EntityTypeMapping TypeName="CourseeModel.student">
               <MappingFragment StoreEntitySet="student">
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="email" ColumnName="email" />
@@ -593,7 +735,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="CourseModel.sysdiagrams">
+            <EntityTypeMapping TypeName="CourseeModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -604,7 +746,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="teacher">
-            <EntityTypeMapping TypeName="CourseModel.teacher">
+            <EntityTypeMapping TypeName="CourseeModel.teacher">
               <MappingFragment StoreEntitySet="teacher">
                 <ScalarProperty Name="teacher_id" ColumnName="teacher_id" />
                 <ScalarProperty Name="email" ColumnName="email" />
@@ -617,7 +759,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="users">
-            <EntityTypeMapping TypeName="CourseModel.users">
+            <EntityTypeMapping TypeName="CourseeModel.users">
               <MappingFragment StoreEntitySet="users">
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="email" ColumnName="email" />

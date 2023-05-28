@@ -20,8 +20,10 @@
         <th>
             @Html.DisplayNameFor(model => model.image)
         </th>
+        <th></th>
         <th>
             @Html.DisplayNameFor(model => model.teacher.email)
+
         </th>
         <th></th>
     </tr>
@@ -38,8 +40,51 @@
             <td>
                 @Html.DisplayFor(modelItem => item.price)
             </td>
+
             <td>
-                @Html.DisplayFor(modelItem => item.image)
+                @*<img src="@item.image" style=" height:100px;width:100px" />*@
+
+                <img src="@item.image" style="height:100px;width:100px" onclick="showLargeImage('@item.image')" />
+
+                <script>
+                    function showLargeImage(imagePath) {
+                        // tạo một đối tượng hình ảnh lớn
+                        var largeImage = new Image();
+                        largeImage.src = imagePath;
+                        largeImage.onload = function () {
+                            // tạo một đối tượng div để chứa hình ảnh lớn
+                            var div = document.createElement('div');
+                            div.style.position = 'fixed';
+                            div.style.top = '0';
+                            div.style.left = '0';
+                            div.style.width = '100%';
+                            div.style.height = '100%';
+                            div.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                            div.style.display = 'flex';
+                            div.style.justifyContent = 'center';
+                            div.style.alignItems = 'center';
+
+                            // tạo một đối tượng hình ảnh để hiển thị ảnh lớn
+                            var img = document.createElement('img');
+                            img.src = imagePath;
+                            img.style.maxWidth = '90%';
+                            img.style.maxHeight = '90%';
+
+                            // thêm đối tượng hình ảnh vào đối tượng div
+                            div.appendChild(img);
+
+                            // thêm đối tượng div vào cơ thể trang web
+                            document.body.appendChild(div);
+
+                            // khi người dùng nhấp chuột vào đối tượng div thì đóng đối tượng này lại
+                            div.onclick = function () {
+                                document.body.removeChild(div);
+                            }
+                        }
+                    }
+                </script>
+
+
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.teacher.email)

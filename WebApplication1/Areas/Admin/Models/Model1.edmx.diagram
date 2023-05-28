@@ -4,25 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e8989904487d4d28aadeed0ec2684be1" Name="Diagram1">
-        <EntityTypeShape EntityType="CourseModel.admins" Width="1.5" PointX="7.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CourseModel.carts" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CourseModel.Course" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CourseModel.feedbacks" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="CourseModel.order_items" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="CourseModel.orders" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CourseModel.student" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CourseModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CourseModel.teacher" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CourseModel.users" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="CourseModel.FK__carts__product_i__35BCFE0A" ManuallyRouted="false" />
-        <AssociationConnector Association="CourseModel.FK__carts__user_id__34C8D9D1" ManuallyRouted="false" />
-        <AssociationConnector Association="CourseModel.FK__feedbacks__produ__300424B4" ManuallyRouted="false" />
-        <AssociationConnector Association="CourseModel.FK__order_ite__produ__2C3393D0" ManuallyRouted="false" />
-        <AssociationConnector Association="CourseModel.FK_Course_teacher" ManuallyRouted="false" />
-        <AssociationConnector Association="CourseModel.FK__feedbacks__user___2F10007B" ManuallyRouted="false" />
-        <AssociationConnector Association="CourseModel.FK_order_items_orders" ManuallyRouted="false" />
-        <AssociationConnector Association="CourseModel.FK_student_users" ManuallyRouted="false" />
+      <Diagram DiagramId="7b411990bd724121bb69319428c2f354" Name="Diagram1">
+        <EntityTypeShape EntityType="CourseeModel.admins" Width="1.5" PointX="7.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseeModel.BaiViet" Width="1.5" PointX="10" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseeModel.carts" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseeModel.Course" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseeModel.feedbacks" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseeModel.LoaiBaiViet" Width="1.5" PointX="7.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseeModel.order_items" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseeModel.orders" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseeModel.posts" Width="1.5" PointX="7.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseeModel.student" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseeModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseeModel.teacher" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CourseeModel.users" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="CourseeModel.FK_BaiViet_LoaiBaiViet" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseeModel.FK__carts__product_i__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseeModel.FK__carts__user_id__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseeModel.FK__feedbacks__produ__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseeModel.FK__order_ite__produ__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseeModel.FK_Course_teacher" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseeModel.FK__feedbacks__user___2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseeModel.FK_order_items_orders" ManuallyRouted="false" />
+        <AssociationConnector Association="CourseeModel.FK_student_users" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication1.Areas.Admin.Models;
 
 namespace WebApplication1.Controllers
 {
@@ -11,6 +12,13 @@ namespace WebApplication1.Controllers
         // GET: Blog
         public ActionResult List()
         {
+            if (Session["user"] != null)
+            {
+                CourseEntities1 db = new CourseEntities1();
+                return View(db.posts.ToList());
+            }
+
+            //return RedirectToAction("Index", "Home");
             return View();
         }
         public ActionResult Detail()

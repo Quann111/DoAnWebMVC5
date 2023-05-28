@@ -1,0 +1,78 @@
+﻿@model IEnumerable<WebApplication1.Areas.Admin.Models.BaiViet>
+
+@{
+    ViewBag.Title = "DanhsachBV";
+    Layout = "~/Areas/Admin/Views/Shared/template.cshtml";
+    int stt = 0;
+
+}
+
+<h2>DanhsachBV</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Them")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenBaiViet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mota)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayViet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NguoiViet)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.HienThi)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.LoaiBaiViet.TenLoai)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        stt++;
+        <tr>
+            <td>
+                @stt
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenBaiViet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mota)
+            </td>
+            <td>
+                @Html.TextBoxFor(modelItem => item.NgayViet, "{0:yyyy-MM-dd}", new { @class = "form-control" })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NguoiViet)
+            </td>
+
+            <td>
+                <input type="checkbox" @Html.Raw(item.HienThi == true ? "checked" : " ") />
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.LoaiBaiViet.TenLoai)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Update_KhoaHoc", new { id = item.ID }) |
+                @*@Html.ActionLink("Details", "Details", new { id=item.ID }) |*@
+                @Html.ActionLink("Delete", "XoaTrangSuc", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>

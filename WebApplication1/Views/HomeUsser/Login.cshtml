@@ -1,302 +1,48 @@
-﻿
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <!--Core CSS -->
-    <link href="~/Assets/Admin/bs3/css/bootstrap.min.css" rel="stylesheet">
-    <link href="~/Assets/Admin/css/bootstrap-reset.css" rel="stylesheet">
-    <link href="~/Assets/Admin/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <!-- Custom styles for this template -->
-    <link href="~/Assets/Admin/css/style.css" rel="stylesheet">
-    <link href="~/Assets/Admin/css/style-responsive.css" rel="stylesheet" />
-    <title>Trang đăng nhập</title>
-</head>
-<body class="login-body">
-    <div class="container">
-
-        <div class="form-signin">
-
-            <h2 class="form-signin-heading">Đăng nhập</h2>
-            <div class="login-wrap">
-
-               
-                    <div class="user-login-info">
-                      
-                    </div>
-                    <label class="checkbox">
-                        <input type="checkbox" value="remember-me"> Remember me
-                        <span class="pull-right">
-                            <a data-toggle="modal" href="#myModal"> Forgot Password?</a>
-                        </span>
-                    </label>
-                    <button class="btn btn-danger" type="submit" style="width:100%; font-weight: bold; font-size: 12pt;"><i class="fa fa-user"></i> Đăng nhập</button>
-
-                    <!--Login Microsoft-->
-                    <a href="@Url.Action("LoginOutlook", "Login")" style="text-decoration: none;">
-                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="300px" height="50px" viewBox="0 0 3278 522" class="SignInButton">
-                        <style type="text/css">
-                            .fil0:hover {
-                                fill: #4B4B4B;
-                            }
-
-                            .fnt0 {
-                                font-size: 200px;
-                                font-family: 'Segoe UI Semibold', 'Segoe UI';
-                                text-decoration: none;
-                            }
-</style>
-                        <rect class="fil0" x="2" y="2" width="3174" height="517" fill="black" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        <rect x="150" y="129" width="122" height="122" fill="#F35325" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        <rect x="284" y="129" width="122" height="122" fill="#81BC06" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        <rect x="150" y="263" width="122" height="122" fill="#05A6F0" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        <rect x="284" y="263" width="122" height="122" fill="#FFBA08" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        <text x="470" y="357" fill="white" class="fnt0">Đăng nhập với Microsoft</text>
-        </svg>
-                    </a>
-
-                    <!--Login Facebook-->
-                    <a href="~/DOTNETGROUP/Login/LoginFacebook" class="btn btn-social-icon btn-sm btn-facebook" style="">
-                        <i class="fa fa-facebook fa-fw" aria-hidden="true"></i> Đăng nhập với Facebook
-                    </a>
-                    <style type="text/css">
-                        a.btn-facebook {
-                            background-color: #0b449a;
-                            color: white;
-                            font-weight: bold;
-                            padding: 10px;
-                            width: 100%;
-                            font-size: 12pt;
-                        }
-
-                            a.btn-facebook:hover {
-                                color: white;
-                                background-color: #022352;
-                                text-decoration: none;
-                            }
-
-                        a.btn-google {
-                            margin-top: 2px;
-                            background-color: #ff0000;
-                            color: white;
-                            font-weight: bold;
-                            padding: 10px;
-                            width: 100%;
-                            font-size: 12pt;
-                        }
-
-                            a.btn-google:hover {
-                                color: white;
-                                background-color: maroon;
-                                text-decoration: none;
-                            }
-                    </style>
-                    <a href="~/DOTNETGROUP/Login/LoginGoogle" class="btn btn-social-icon btn-sm btn-google" style="">
-                        <i class="fa fa-google-plus fa-fw" aria-hidden="true"></i> Đăng nhập với Google
-                    </a>
-                }
-                <div class="registration">
-                    Don't have an account yet?
-                    <a class="" href="registration.html">
-                        Create an account
-                    </a>
-                </div>
-            </div>
-
-
-            <!-- Modal -->
-            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title">Forgot Password ?</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>Enter your e-mail address below to reset your password.</p>
-                            <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
-                        </div>
-                        <div class="modal-footer">
-                            <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
-                            <button class="btn btn-success" type="button">Submit</button>
-                        </div>
+﻿<link href="~/plugins/HomeUsser/css/bootstrap.css" rel="stylesheet" />
+<section class="vh-100" style="background-color: #508bfc;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+
+                        <h3 class="mb-5">ECOURSES</h3>
+                        <form role="form" id="Login" method="post">
+                            <div class="form-outline mb-4">
+                                <input type="email" id="typeEmailX-2" class="form-control form-control-lg" name="user" />
+                                <label class="form-label" for="typeEmailX-2">Email</label>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <input type="password" id="typePasswordX-2" class="form-control form-control-lg" name="password" />
+                                <label class="form-label" for="typePasswordX-2">Password</label>
+                            </div>
+
+                            <!-- Checkbox -->
+                            <div class="form-check d-flex justify-content-start mb-4">
+                                <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
+                                <label class="form-check-label" for="form1Example3"> Remember password </label>
+                            </div>
+
+                            <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+
+                            @Html.ActionLink("Register", "Register", "HomeUsser", new { @class = "btn btn-check btn-lg btn-block" })
+
+
+
+
+                            <button class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;"
+                                    type="submit">
+                                <i class="fab fa-google me-2"></i> Sign in with google
+                            </button>
+                            <button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #3b5998;"
+                                    type="submit">
+                                <i class="fab fa-facebook-f me-2"></i>Sign in with facebook
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
-            <!-- modal -->
-
-
         </div>
-
-
-
-
-
     </div>
-
-    <!-- Placed js at the end of the document so the pages load faster -->
-    <!--Core js-->
-    <script src="~/Assets/Admin/js/jquery.js"></script>
-    <script src="~/Assets/Admin/bs3/js/bootstrap.min.js"></script>
-</body>
-</html>
+</section>

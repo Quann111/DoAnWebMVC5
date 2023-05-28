@@ -36,8 +36,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
-                Brand
+            <a style="color:red ;font-weight:bolder" class="navbar-brand" href="~/HomeUsser/Index">
+                ECOURSES
             </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -53,8 +53,8 @@
                     @Html.ActionLink("Logout", "Logout", "Home")
                 </li>
                 <li class="dropdown ">
-                    
-                    
+
+
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
@@ -68,6 +68,12 @@
             <li><a href="~/Admin/Teacher/DanhsachGV">Teacher</a></li>
             <li><a href="~/Admin/Student/Danhsachsv">Student</a></li>
             <li><a href="~/Admin/Account/DanhsachTK">Account</a></li>
+            @*<li><a href="~/Admin/Post/DanhsachTinTuc">News</a></li>*@
+            <li><a href="~/Admin/LoaiBaiViet/DanhsachLoaiBV">NewList</a></li>
+            <li><a href="~/Admin/BaiViet/DanhsachBV">News</a></li>
+
+
+
         </ul>
     </div>
     <div class="col-md-10 content">
@@ -78,10 +84,11 @@
             <div class="panel-body">
                 @RenderBody()
             </div>
-            
+
         </div>
     </div>
     <footer class="pull-left footer">
-
     </footer>
+    <script src="~/plugins/Pluginss/ckeditor/ckeditor.js"></script>
+    @RenderSection("DoanJS", false)
 </div>
