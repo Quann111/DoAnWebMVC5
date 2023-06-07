@@ -76,6 +76,8 @@ namespace WebApplication1.Areas.Admin.Controllers
             updateModel.Mota = model.Mota;
             updateModel.NguoiViet = model.NguoiViet;
             updateModel.HienThi = model.HienThi;
+            updateModel.NgayViet = model.NgayViet;
+
 
 
 

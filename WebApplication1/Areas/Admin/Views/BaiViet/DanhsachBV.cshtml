@@ -7,7 +7,6 @@
 
 }
 
-<h2>DanhsachBV</h2>
 
 <p>
     @Html.ActionLink("Create New", "Them")
@@ -21,14 +20,12 @@
             @Html.DisplayNameFor(model => model.TenBaiViet)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Mota)
+            @Html.DisplayNameFor(model => model.NguoiViet)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.NgayViet)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NguoiViet)
-        </th>
+
 
         <th>
             @Html.DisplayNameFor(model => model.HienThi)
@@ -51,14 +48,12 @@
                 @Html.DisplayFor(modelItem => item.TenBaiViet)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Mota)
+                @Html.DisplayFor(modelItem => item.NguoiViet)
             </td>
             <td>
                 @Html.TextBoxFor(modelItem => item.NgayViet, "{0:yyyy-MM-dd}", new { @class = "form-control" })
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NguoiViet)
-            </td>
+
 
             <td>
                 <input type="checkbox" @Html.Raw(item.HienThi == true ? "checked" : " ") />
